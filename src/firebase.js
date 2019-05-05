@@ -14,9 +14,12 @@ const config = {
 
   const firebaseDB = firebase.database();
  
-  firebaseDB.ref('eyes').set('brown')
+  firebaseDB.ref().update({
+   name:'Seteve',
+   'car/color':'black'
+  })
   .then(()=>{
-      console.log('data saved')
+      console.log('data update')
   })
   .catch((e)=>{
       console.log(e)
