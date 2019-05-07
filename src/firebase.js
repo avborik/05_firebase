@@ -14,17 +14,24 @@ const config = {
 
   const firebaseDB = firebase.database();
  
-  firebaseDB.ref().on('child_added',(snapshot)=>{
-    console.log(snapshot.key.snapshot.val())
+  firebaseDB.ref('users').once('value')
+  .then((snapshot)=>{
+      const users = [];
+        snapshot.forEach(childSnapshot => {
+            users.push({
+                id: childSnapshot.key,
+                ...childSnapshot.val()
+            })
+            
+        })
+        console.log(users)
   })
-//   setTimeout(()=>{
-//     firebaseDB.ref('name').set('name 1')
-// },3000)
 
-//   setTimeout(()=>{
-//       firebaseDB.ref().off();
-//   },4000)
- 
-//   setTimeout(()=>{
-//     firebaseDB.ref('name').set('name 2')
-// },5000)
+  export {
+      firebaseDB
+  }
+
+//   firebaseDB.ref('users').push({
+//     name:'bearka',
+//     lastname:'King'
+// })
