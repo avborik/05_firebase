@@ -14,13 +14,17 @@ const config = {
 
   const firebaseDB = firebase.database();
  
-  firebaseDB.ref().update({
-   name:'Seteve',
-   'car/color':'black'
+  firebaseDB.ref().on('child_added',(snapshot)=>{
+    console.log(snapshot.key.snapshot.val())
   })
-  .then(()=>{
-      console.log('data update')
-  })
-  .catch((e)=>{
-      console.log(e)
-  })
+//   setTimeout(()=>{
+//     firebaseDB.ref('name').set('name 1')
+// },3000)
+
+//   setTimeout(()=>{
+//       firebaseDB.ref().off();
+//   },4000)
+ 
+//   setTimeout(()=>{
+//     firebaseDB.ref('name').set('name 2')
+// },5000)
