@@ -13,6 +13,7 @@ const config = {
   firebase.initializeApp(config);
 
   const firebaseDB = firebase.database();
+  const googleAuth = new firebase.auth.GoogleAuthProvider();
  
   firebaseDB.ref('users').once('value')
   .then((snapshot)=>{
@@ -28,7 +29,9 @@ const config = {
   })
 
   export {
-      firebaseDB
+      firebase,
+      firebaseDB,
+      googleAuth
   }
 
 //   firebaseDB.ref('users').push({
